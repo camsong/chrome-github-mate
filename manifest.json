@@ -2,7 +2,7 @@
   "name": "GitHub Mate",
   "description": "Missing mate of GitHub, easy download and notifications",
   "default_locale": "en",
-  "version": "0.2",
+  "version": "0.3",
   "background": {
     "persistent": false,
     "page": "background.html"

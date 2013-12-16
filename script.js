@@ -8,12 +8,10 @@ var FileDownloader = (function(){
         var linkNode = event.target.parentNode.nextElementSibling.querySelector('a');
         var href = linkNode.href.replace('github.com', 'raw.github.com').replace('\/blob\/', '\/');
         FileDownloader.downloadIt(href, linkNode.textContent);
-      } else if (FileDownloader.fromFilePage(event.target)) {
+      } else if (FileDownloader.fromFilePage(event.target) && document.querySelector('#raw-url')) {
         var href = document.querySelector('#raw-url').href;
         var fileName = document.querySelector('.breadcrumb .final-path').textContent;
         FileDownloader.downloadIt(href, fileName);
-      } else {
-        console.error("Oops, you find a bug, please report to...");
       }
     },
     downloadIt: function(href, fileName) {
