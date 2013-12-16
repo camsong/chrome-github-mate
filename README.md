@@ -1,7 +1,9 @@
 GitHub Mate
 ==================
-
 Chrome extension to enhance GitHub experiences.
+
+![GitHub Mate Icon](https://lh5.googleusercontent.com/lu8gjeuKCYW846Y-l8tt4PulU4R3TBXqe0FDwmve_DhHD5RDuf6lUps2d0isFU-WLzjgrXZ5PQ=s128-h128-e365)
+
 
 Install extension: https://chrome.google.com/webstore/detail/github-mate/baggcehellihkglakjnmnhpnjmkbmpkf
 
