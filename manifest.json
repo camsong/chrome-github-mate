@@ -1,14 +1,16 @@
 {
   "name": "GitHub Mate",
-  "description": "Missing mate of GitHub, easy download and notifications",
+  "description": "Missing mate of GitHub, making single file download effortless and with more features",
   "default_locale": "en",
-  "version": "0.3",
+  "version": "0.3.1",
   "background": {
     "persistent": false,
     "page": "background.html"
   },
   "permissions" : [
-    "*://github.com/*"
+    "*://github.com/*",
+    "tabs",
+    "webNavigation"
   ],
   "content_scripts": [
     {
