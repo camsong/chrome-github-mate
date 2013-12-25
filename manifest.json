@@ -22,5 +22,10 @@
   "browser_action": {
     "default_icon": "icon.png"
   },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon.png",
+    "128": "icon128.png"
+  },
   "manifest_version": 2
 }
