@@ -26,6 +26,7 @@ GitHub Mate made download file easy by click the icon of file.
 
 * Download folder on one click
 * Display file line count in an earlier way
+* Similar Repositories
 
 ### License
 
