@@ -1,6 +1,12 @@
 ;(function(){
 'use strict';
 
+// message listener to accept request from content script
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  console.log('get message request: key=' + request.key);
+  sendResponse({result: getConfig()[request.key]});
+});
+
 var GitHubNotification;
 var notificationUrl = 'https://github.com/notifications';
 var blue = [1, 128, 255, 255];
@@ -57,12 +63,15 @@ function _displayUnreadCount(response) {
 }
 
 GitHubNotification = {
-  config: {
-    interval: 30000,
+  getInterval: function() {
+    return parseInt(getConfig()['feature-2-interval']) * 60 * 1000;
+  },
+
+  isEnabled: function() {
+    return getConfig()['feature-2-enable'];
   },
 
   init: function() {
-    this.checkNotifications();
     this.checkNotificationsLoop();
 
     chrome.browserAction.onClicked.addListener(this.goToNotificationTab.bind(this));
@@ -71,13 +80,18 @@ GitHubNotification = {
   goToNotificationTab: _goToNotificationTab,
 
   checkNotificationsLoop: function(){
-    window.setTimeout(
-      function(){
-        GitHubNotification.checkNotifications();
-        GitHubNotification.checkNotificationsLoop();
-      },
-      GitHubNotification.config.interval
-    );
+    // check notification again if it's enabled and the date range since last checked is longer
+    // than interval.
+    if (GitHubNotification.isEnabled() && (
+         typeof(localStorage.last_checked_date) === 'undefined' ||
+         (Date.now() - localStorage.last_checked_date) >= GitHubNotification.getInterval()
+      )) {
+      this.checkNotifications();
+      localStorage.last_checked_date = Date.now();
+    }
+
+    // loop;
+    window.setTimeout(GitHubNotification.checkNotificationsLoop.bind(GitHubNotification), 60000);
   },
 
   checkNotifications: function() {

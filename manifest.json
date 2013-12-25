@@ -16,7 +16,7 @@
     {
       "matches": ["https://github.com/*"],
       "css": ["style.css"],
-      "js": ["script.js"]
+      "js": ["config.js", "script.js"]
     }
   ],
   "browser_action": {
@@ -27,5 +27,6 @@
     "48": "icon.png",
     "128": "icon128.png"
   },
+  "options_page": "options.html",
   "manifest_version": 2
 }

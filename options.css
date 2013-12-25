@@ -1,0 +1,51 @@
+body {
+  font: normal 12px arial, serif;
+  background: white;
+  overflow-x: hidden;
+}
+#wrapper {
+  width: 600px;
+  margin: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+table thead {
+  background-color: #eee;
+}
+th, td {
+  padding: 6px 4px;
+  color: #333;
+}
+th {
+  font-weight: bold;
+  text-align: right;
+  padding-right: 6px;
+}
+table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+table tbody th {
+  border-bottom: 1px solid #ddd;
+}
+table tbody td {
+  font-weight: normal;
+  vertical-align: middle;
+  text-align: left;
+  font-size: 12px;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+
+input {
+  margin: 0;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5px 0 0;
+}

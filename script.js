@@ -1,6 +1,14 @@
 var FileDownloader = {
   init: function() {
-    document.addEventListener('click', this.eventHandler.bind(this));
+    document.addEventListener('click', function(event) {
+      chrome.runtime.sendMessage({key: "feature-1-enable"}, function(response) {
+        if(typeof(response.result) === 'undefined' || response.result === true) {
+          FileDownloader.eventHandler.call(FileDownloader, event);
+        } else {
+          console.log('GitHub Mate click to download file is disabled, you can reenable it in options.');
+        }
+      });
+    });
   },
 
   eventHandler: function(event) {
