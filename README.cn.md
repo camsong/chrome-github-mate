@@ -19,6 +19,9 @@ GitHub可以让你很方便的以Zip格式下载所有文件，但如果只需�
 
 ![show notifications](https://lh3.googleusercontent.com/Gc9ToCQXkMw9mJkMDnST4fmICa74EOhc2tcp_HKxefAvp_ahUiLWU_o9oBCPcN-7-xqbimXcIw=s640-h400-e365-rw)
 
+#### 3. 显示仓库大小
+![show repo size](https://lh3.googleusercontent.com/GTPy_FCisMJ5WzxzsXv7O7y0Qfx-NCxTswH-zGC6Djh0vOPSv1rbynXEb_fylWK6mwkk-D01Eg=s640-h400-e365-rw)
+
 ### 计划
 
 * 一键下载文件夹
