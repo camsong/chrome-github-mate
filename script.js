@@ -14,7 +14,7 @@ var FileDownloader = {
   eventHandler: function(event) {
     if (this.isFromListPage(event.target)) {
       var linkNode = event.target.parentNode.nextElementSibling.querySelector('a');
-      var href = linkNode.href.replace('github.com', 'raw.github.com').replace('\/blob\/', '\/');
+      var href = linkNode.href.replace('\/blob\/', '\/raw\/');
       this.downloadIt(href, linkNode.textContent);
     } else if (this.isFromFilePage(event.target) && document.querySelector('#raw-url')) {
       var href = document.querySelector('#raw-url').href;
