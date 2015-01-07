@@ -1,5 +1,9 @@
+
 var FileDownloader = {
   init: function() {
+    FileDownloader.addDownloadTooltip();
+    FileDownloader.bindPopState();
+
     document.addEventListener('click', function(event) {
       chrome.runtime.sendMessage({key: "feature-1-enable"}, function(response) {
         if(typeof(response.result) === 'undefined' || response.result === true) {
@@ -9,6 +13,21 @@ var FileDownloader = {
         }
       });
     });
+  },
+
+  addDownloadTooltip: function() {
+    Array.prototype.slice.call(document.querySelectorAll('.octicon-file-text')).map(function(icon) {
+      var td = icon.parentNode;
+      td.classList.add('tooltipped', 'tooltipped-se');
+      td.setAttribute('aria-label', 'Click to download');
+    });
+  },
+
+  bindPopState: function() {
+    window.onpopstate = function(event) {
+      alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
+      FileDownloader.addDownloadTooltip();
+    };
   },
 
   eventHandler: function(event) {
