@@ -1,26 +1,43 @@
 var ShowSize = {
+  username: '',
+  reponame: '',
   init: function() {
     if (this.isAvailable()) {
       var repoInfo = window.location.href.match(/https:\/\/github.com\/([^\/]+)\/([^\/]+)/);
       if(repoInfo.length === 3) {
+        this.username = repoInfo[1];
+        this.reponame = repoInfo[2];
+
         this.doRequest(repoInfo[1], repoInfo[2]);
       }
     }
   },
   doRequest: function(username, reponame) {
+    var localStorageKey = ['GM', 'repos', username, reponame].join('-');
+    if (localStorage.getItem(localStorageKey)) {
+      ShowSize.doCheck(JSON.parse(localStorage.getItem(localStorageKey)));
+      return;
+    }
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://api.github.com/repos/" + username + "/" + reponame, true);
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4) {
-        var matches = xhr.responseText.match(/"size": (\d+),/);
-        if(matches && matches.length === 2 ) {
-          console.log('[GitHub Mate] got repo size: ' + matches[1]);
-          ShowSize.show.call(ShowSize, matches[1]);
-        }
+        localStorage.setItem(localStorageKey, xhr.responseText);
+        ShowSize.doCheck(JSON.parse(xhr.responseText));
       }
-    }
+    };
     xhr.send();
     console.log('[GitHub Mate] requesting api to get repo size');
+  },
+  doCheck: function(json) {
+    if (typeof json.size !== 'undefined') {
+      //console.log('[GitHub Mate] got repo size: ' + matches[1]);
+      ShowSize.show.call(ShowSize, json.size);
+    }
+    if (json.has_pages) {
+      ShowSize.showGHPages();
+    }
   },
   isAvailable: function() {
     if (document.querySelector('.entry-title.public') === null ||
@@ -28,6 +45,11 @@ var ShowSize = {
       return false;
     }
     return true;
+  },
+  showGHPages: function() {
+    if (document.querySelector('.file-navigation.in-mid-page')) {
+      document.querySelector('.file-navigation.in-mid-page').innerHTML += "<a href='http://" + this.username + ".github.io/" + this.reponame + "' data-name='gh-pages' data-skip-pjax='true' rel='nofollow' class='js-show-gh-pages minibutton empty-icon tooltipped tooltipped-s right' title='gh-pages' aria-label='Goto github pages'>GH Pages</a>";
+    }
   },
   show: function(size) {
     var center, outter, container;

@@ -2,7 +2,7 @@
   "name": "GitHub Mate",
   "description": "Missing mate of GitHub, making single file download effortless and with more features",
   "default_locale": "en",
-  "version": "0.7.1",
+  "version": "0.8.1",
   "background": {
     "persistent": false,
     "page": "background.html"
@@ -12,11 +12,13 @@
     "tabs",
     "webNavigation"
   ],
+  "web_accessible_resources": ["page.js"],
   "content_scripts": [
     {
       "matches": ["https://github.com/*"],
+      "run_at": "document_end",
       "css": ["style.css"],
-      "js": ["config.js", "script.js", "show-size.js"]
+      "js": ["jquery-2.1.3.min.js", "page.js", "config.js", "script.js", "show-size.js"]
     }
   ],
   "browser_action": {
