@@ -1,3 +1,13 @@
+// page.js injection start
+var s = document.createElement('script');
+    s.src = chrome.extension.getURL('page.js');
+    s.onload = function() {
+        this.parentNode.removeChild(this);
+    };
+(document.head||document.documentElement).appendChild(s);
+// page.js injection end
+
+
 
 var FileDownloader = {
   init: function() {
@@ -21,12 +31,22 @@ var FileDownloader = {
       td.classList.add('tooltipped', 'tooltipped-se');
       td.setAttribute('aria-label', 'Click to download');
     });
+    // if in file detail page
+    var rawUrlNode = document.querySelector('#raw-url');
+    if (rawUrlNode && !document.querySelector('#download-btn')) {
+      var fileName = document.querySelector('.breadcrumb .final-path').textContent;
+      rawUrlNode.parentNode.innerHTML = "<a download='"+fileName+"' href='" + rawUrlNode.href + "' class='minibutton' id='download-btn'>Download</a>" + rawUrlNode.parentNode.innerHTML;
+    }
   },
 
   bindPopState: function() {
-    window.onpopstate = function(event) {
-      alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    document.addEventListener('_pjax:end', function() {
       FileDownloader.addDownloadTooltip();
+      ShowSize.init();
+    }, false);
+    window.onpopstate = function(event) {
+      FileDownloader.addDownloadTooltip();
+      ShowSize.init();
     };
   },
 
@@ -35,10 +55,6 @@ var FileDownloader = {
       var linkNode = event.target.parentNode.nextElementSibling.querySelector('a');
       var href = linkNode.href.replace('\/blob\/', '\/raw\/');
       this.downloadIt(href, linkNode.textContent);
-    } else if (this.isFromFilePage(event.target) && document.querySelector('#raw-url')) {
-      var href = document.querySelector('#raw-url').href;
-      var fileName = document.querySelector('.breadcrumb .final-path').textContent;
-      this.downloadIt(href, fileName);
     }
   },
 
@@ -56,12 +72,6 @@ var FileDownloader = {
       document.querySelector('.files').contains(node) &&
       document.querySelector('.file') === null;
   },
-
-  isFromFilePage: function(node) {
-    return node.classList.contains('octicon-file-text') &&
-      document.querySelector('.file') &&
-      document.querySelector('.file').contains(node);
-  }
 }
 
 FileDownloader.init();
