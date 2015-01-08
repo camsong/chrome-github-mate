@@ -32,8 +32,9 @@ var ShowSize = {
   },
   doCheck: function(json) {
     if (typeof json.size !== 'undefined') {
-      //console.log('[GitHub Mate] got repo size: ' + matches[1]);
-      ShowSize.show.call(ShowSize, json.size);
+      if (!document.querySelector('.github-mate-size')) {
+        ShowSize.show.call(ShowSize, json.size);
+      }
     }
     if (json.has_pages) {
       ShowSize.showGHPages();
@@ -48,7 +49,7 @@ var ShowSize = {
   },
   showGHPages: function() {
     if (document.querySelector('.file-navigation.in-mid-page')) {
-      document.querySelector('.file-navigation.in-mid-page').innerHTML += "<a href='http://" + this.username + ".github.io/" + this.reponame + "' data-name='gh-pages' data-skip-pjax='true' rel='nofollow' class='js-show-gh-pages minibutton empty-icon tooltipped tooltipped-s right' title='gh-pages' aria-label='Goto github pages'>GH Pages</a>";
+      document.querySelector('.file-navigation.in-mid-page').innerHTML += "<a href='http://" + this.username + ".github.io/" + this.reponame + "' data-name='gh-pages' data-skip-pjax='true' rel='nofollow' class='js-show-gh-pages minibutton empty-icon tooltipped tooltipped-s right' aria-label='Goto github pages'>GH Pages</a>";
     }
   },
   show: function(size) {
@@ -56,7 +57,7 @@ var ShowSize = {
     center = document.createElement('center');
     center.textContent = this.humanSize(size);
     outter = document.createElement('div');
-    outter.setAttribute('class', 'clone-url open github-mate-size');
+    outter.setAttribute('class', 'github-mate-size');
     outter.appendChild(center);
     container = document.querySelector('.only-with-full-nav');
     if(container !== null)
