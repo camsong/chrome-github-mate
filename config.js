@@ -1,6 +1,6 @@
 var DEFAULT_CONFIG = {
   'feature-1-enable': true,
-  'feature-2-enable': true,
+  'feature-2-enable': false,
   'feature-2-interval': '5'
 };
 

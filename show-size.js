@@ -49,7 +49,7 @@ var ShowSize = {
   },
   showGHPages: function() {
     if (document.querySelector('.file-navigation.in-mid-page')) {
-      document.querySelector('.file-navigation.in-mid-page').innerHTML += "<a href='http://" + this.username + ".github.io/" + this.reponame + "' data-name='gh-pages' data-skip-pjax='true' rel='nofollow' class='js-show-gh-pages minibutton empty-icon tooltipped tooltipped-s right' aria-label='Goto github pages'>GH Pages</a>";
+      document.querySelector('.file-navigation.in-mid-page').innerHTML += "<a href='http://" + this.username + ".github.io/" + this.reponame + "' data-name='gh-pages' data-skip-pjax='true' rel='nofollow' class='js-show-gh-pages btn btn-sm empty-icon tooltipped tooltipped-s right' aria-label='Goto github pages'>GH Pages</a>";
     }
   },
   show: function(size) {
