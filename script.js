@@ -35,7 +35,7 @@ var FileDownloader = {
     var rawUrlNode = document.querySelector('#raw-url');
     if (rawUrlNode && !document.querySelector('#download-btn')) {
       var fileName = document.querySelector('.breadcrumb .final-path').textContent;
-      rawUrlNode.parentNode.innerHTML = "<a download='"+fileName+"' href='" + rawUrlNode.href + "' class='minibutton' id='download-btn'>Download</a>" + rawUrlNode.parentNode.innerHTML;
+      rawUrlNode.parentNode.innerHTML = "<a download='"+fileName+"' href='" + rawUrlNode.href + "' class='btn btn-sm' id='download-btn'>Download</a>" + rawUrlNode.parentNode.innerHTML;
     }
   },
 
