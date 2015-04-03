@@ -10,17 +10,24 @@ https://chrome.google.com/webstore/detail/github-mate/baggcehellihkglakjnmnhpnjm
 
 ### 功能
 
-#### 1. 点击一下即可下载文件
+#### 1. 一键下载文件
 GitHub可以让你很方便的以Zip格式下载所有文件，但如果只需要下载一个文件，非常麻烦。使用GitHub Mate后只需要点击文件图标即可下载。
 
-![click icon to download](https://lh4.googleusercontent.com/pmnJq0W-odK3qaoFydvC2a9QZcFvVsldrS51-BCJsNj4PL1a0N24RDN6eK1dLV7Mu5esuR54PQ=s640-h400-e365-rw)
+![click icon to download](https://lh3.googleusercontent.com/EbAU6GVeTcc3DRyIphPRMAeaVOhL1e62xkAdm_5nlVB-aalkj6c2PhncMrmumLDOIoLCEXOPWA=s640-h400-e365-rw)
 
-#### 2. 显示未读消息数
+详情页媲美原生的“Download”按钮
 
-![show notifications](https://lh3.googleusercontent.com/Gc9ToCQXkMw9mJkMDnST4fmICa74EOhc2tcp_HKxefAvp_ahUiLWU_o9oBCPcN-7-xqbimXcIw=s640-h400-e365-rw)
+![click icon to download](https://lh3.googleusercontent.com/kTEhmep4hM1Mknr1ILHgFVIzS8a-WszsdKjV0qH8Qjp7M-rbYA-yNR-WA6voWY7gtG9DIBn7Uw=s640-h400-e365-rw)
+
+#### 2. 一键打开项目的 Github Pages
+![click to go to Github Pages](https://lh3.googleusercontent.com/Kqy1GJ4AhBhacfP32EpbPgXcqUCRgHD49zm3Lq98Kau9genJE8ZRzxsbIiFaSZRdj4Oj2asPPdU=s640-h400-e365-rw)
 
 #### 3. 显示仓库大小
-![show repo size](https://lh3.googleusercontent.com/GTPy_FCisMJ5WzxzsXv7O7y0Qfx-NCxTswH-zGC6Djh0vOPSv1rbynXEb_fylWK6mwkk-D01Eg=s640-h400-e365-rw)
+![show repo size](https://lh3.googleusercontent.com/55rEmkS6aozOxTiDedq5ENddNK2C2P4VfwVK-DoeCbHOduXPLySXv8dqdLFFAPtgsERLq2_u=s640-h400-e365-rw)
+
+#### 4. 显示未读消息数
+
+![show notifications](https://lh3.googleusercontent.com/Gc9ToCQXkMw9mJkMDnST4fmICa74EOhc2tcp_HKxefAvp_ahUiLWU_o9oBCPcN-7-xqbimXcIw=s640-h400-e365-rw)
 
 ### 计划
 
