@@ -16,7 +16,9 @@ https://chrome.google.com/webstore/detail/github-mate/baggcehellihkglakjnmnhpnjm
 GitHub enable you download download codebase as a zip very easy, but it's painful to download a stand-alone file.
 GitHub Mate made download file easy by click the icon of file.
 
-![click icon to download](https://lh3.googleusercontent.com/Kqy1GJ4AhBhacfP32EpbPgXcqUCRgHD49zm3Lq98Kau9genJE8ZRzxsbIiFaSZRdj4Oj2asPPdU=s640-h400-e365-rw)
+![click icon to download](https://lh3.googleusercontent.com/EbAU6GVeTcc3DRyIphPRMAeaVOhL1e62xkAdm_5nlVB-aalkj6c2PhncMrmumLDOIoLCEXOPWA=s640-h400-e365-rw)
+
+Amazing native-like 'Download' button in file detail page!
 
 ![click icon to download](https://lh3.googleusercontent.com/kTEhmep4hM1Mknr1ILHgFVIzS8a-WszsdKjV0qH8Qjp7M-rbYA-yNR-WA6voWY7gtG9DIBn7Uw=s640-h400-e365-rw)
 
