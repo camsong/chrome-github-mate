@@ -42,8 +42,8 @@ Amazing native-like 'Download' button in file detail page!
 
 ### Credits
 
-* Thanks for smart ideas and good work from @vohof, @riophae, @groseb etc.
-* [Github-cheat-sheet](https://github.com/tiimgreen/github-cheat-sheet#adjust-tab-space)
+* Thanks for smart ideas and great work from @vohof, @riophae, @groseb etc.
+* [Github-cheat-sheet](https://github.com/tiimgreen/github-cheat-sheet)
 
 ### License
 
