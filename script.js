@@ -19,7 +19,7 @@ var FileDownloader = {
         if(typeof(response.result) === 'undefined' || response.result === true) {
           FileDownloader.eventHandler.call(FileDownloader, event);
         } else {
-          console.log('GitHub Mate click to download file is disabled, you can reenable it in options.');
+          console.log('GitHub Mate click to download file is disabled, you can re-enable it in options page.');
         }
       });
     });

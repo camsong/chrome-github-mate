@@ -32,11 +32,18 @@ Amazing native-like 'Download' button in file detail page!
 
 ![show notifications](https://lh3.googleusercontent.com/Gc9ToCQXkMw9mJkMDnST4fmICa74EOhc2tcp_HKxefAvp_ahUiLWU_o9oBCPcN-7-xqbimXcIw=s640-h400-e365-rw)
 
+#### 5. Adjust Tab Space smartly, make it display tab characters as 4 spaces wide instead of the default 8.
+
 ### TODO
 
 * Download folder on one click
 * Display file line count in an earlier way
 * Similar Repositories
+
+### Credits
+
+* Thanks for smart ideas and good work from @vohof, @riophae, @groseb etc.
+* [Github-cheat-sheet](https://github.com/tiimgreen/github-cheat-sheet#adjust-tab-space)
 
 ### License
 
