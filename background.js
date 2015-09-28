@@ -33,8 +33,15 @@ function _goToNotificationTab() {
   });
 }
 
+// type can be unread/participating
 function _extractUnreadNotifications(response) {
-  return parseInt(response.match(/<span class="count">([^<]+)</)[1]);
+  var type = getConfig()['feature-2-type'];
+
+  if (type === 'participating') {
+    return parseInt(response.match(/<span class="count">(\d+)</g)[1].match(/\d+/g)[0]);
+  }
+  // unread and others
+  return parseInt(response.match(/<span class="count">(\d+)</g)[0].match(/\d+/g)[0]);
 }
 
 function _loginWarning() {
