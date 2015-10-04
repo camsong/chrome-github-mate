@@ -48,10 +48,16 @@ var ShowSize = {
     return true;
   },
   showGHPages: function() {
+    // fix a bug: if the repo name match `username.github.io`  or `username.github.com`, then the github pages url should be `username.github.io`
+    var pageUrl = "http://" + this.username + ".github.io/" + this.reponame;
+    if(this.reponame === this.username + '.github.com' ||
+       this.reponame === this.username + '.github.io') {
+      pageUrl = 'http://' + this.username + '.github.io'
+    }
     if (document.querySelector('.file-navigation.in-mid-page')) {
       // if there is no gh-pages button, add one
       if (!document.querySelector('.js-show-gh-pages')) {
-        document.querySelector('.file-navigation.in-mid-page').innerHTML += "<a href='http://" + this.username + ".github.io/" + this.reponame + "' data-name='gh-pages' data-skip-pjax='true' rel='nofollow' class='js-show-gh-pages btn btn-sm empty-icon tooltipped tooltipped-s right' aria-label='Goto github pages'>GH Pages</a>";
+        document.querySelector('.file-navigation.in-mid-page').innerHTML += "<a href='" + pageUrl + "' data-name='gh-pages' data-skip-pjax='true' rel='nofollow' class='js-show-gh-pages btn btn-sm empty-icon tooltipped tooltipped-s right' aria-label='Goto github pages'>GH Pages</a>";
       }
     }
   },
