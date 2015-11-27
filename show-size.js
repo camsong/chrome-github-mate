@@ -40,12 +40,10 @@ var ShowSize = {
       ShowSize.showGHPages();
     }
   },
+  // make sure it's the repo index page
   isAvailable: function() {
-    if (document.querySelector('.entry-title.public') === null ||
-        document.querySelector('.only-with-full-nav') === null) {
-      return false;
-    }
-    return true;
+    return document.querySelector('.entry-title.public') &&
+           document.querySelector('.overall-summary.overall-summary-bottomless')
   },
   showGHPages: function() {
     // fix a bug: if the repo name match `username.github.io`  or `username.github.com`, then the github pages url should be `username.github.io`
@@ -67,8 +65,9 @@ var ShowSize = {
     center.textContent = this.humanSize(size);
     outter = document.createElement('div');
     outter.setAttribute('class', 'github-mate-size');
+    outter.setAttribute('style', 'float:right;margin-top: 6px');
     outter.appendChild(center);
-    container = document.querySelector('.only-with-full-nav');
+    container = document.querySelector('.reponav');
     if(container !== null)
       container.appendChild(outter);
   },
