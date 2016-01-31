@@ -1,8 +1,8 @@
 {
-  "name": "GitHub Mate",
+  "name": "Octo Mate",
   "description": "Missing mate of GitHub, making single file download effortless and with more features",
   "default_locale": "en",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "background": {
     "persistent": false,
     "page": "background.html"
