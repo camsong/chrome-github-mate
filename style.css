@@ -6,25 +6,24 @@
   margin-right: 5px;
 }
 
-
 /* tab size start */
-.github-mate-tab-size-2 .tab-size-2,
-.github-mate-tab-size-2 .tab-size-4,
-.github-mate-tab-size-2 .tab-size-8,
+.github-mate-tab-size-2 .tab-size[data-tab-size='2'],
+.github-mate-tab-size-2 .tab-size[data-tab-size='4'],
+.github-mate-tab-size-2 .tab-size[data-tab-size='8'],
 .github-mate-tab-size-2 .inline-review-comment,
 .github-mate-tab-size-2 .gist table.lines {
   tab-size: 2 !important;
 }
-.github-mate-tab-size-4 .tab-size-2,
-.github-mate-tab-size-4 .tab-size-4,
-.github-mate-tab-size-4 .tab-size-8,
+.github-mate-tab-size-4 .tab-size[data-tab-size='2'],
+.github-mate-tab-size-4 .tab-size[data-tab-size='4'],
+.github-mate-tab-size-4 .tab-size[data-tab-size='8'],
 .github-mate-tab-size-4 .inline-review-comment,
 .github-mate-tab-size-4 .gist table.lines {
   tab-size: 4 !important;
 }
-.github-mate-tab-size-8 .tab-size-2,
-.github-mate-tab-size-8 .tab-size-4,
-.github-mate-tab-size-8 .tab-size-8,
+.github-mate-tab-size-8 .tab-size[data-tab-size='2'],
+.github-mate-tab-size-8 .tab-size[data-tab-size='4'],
+.github-mate-tab-size-8 .tab-size[data-tab-size='8'],
 .github-mate-tab-size-8 .inline-review-comment,
 .github-mate-tab-size-8 .gist table.lines {
   tab-size: 8 !important;
