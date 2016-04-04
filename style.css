@@ -2,8 +2,10 @@
   cursor: pointer;
   color: #4183c4 !important;
 }
-.js-show-gh-pages {
-  margin-right: 5px;
+
+/* override style to give space to GH Pages button */
+.file-navigation-option form .input-group {
+  width: 220px;
 }
 
 /* tab size start */
@@ -29,3 +31,50 @@
   tab-size: 8 !important;
 }
 /* tab size end */
+
+
+/* github mate panel start, including outline style and favorites style */
+.github-mate-panel {
+  position: fixed;
+  top:0;
+  right: 0;
+  z-index: 10;
+  background:rgba(255,255,255,0.9);
+  border-left: 3px #d26911 solid;
+  border-radius: 3px;
+  width: 200px;
+  padding: 10px 5px 15px 15px;
+  max-height:100%;
+  overflow-y:auto
+}
+@media(max-width: 1400px) {
+  .github-mate-panel {
+    right:-185px;
+    right:0;
+  }
+  .github-mate-panel:hover {
+    right:0;
+  }
+}
+.github-mate-panel a.add.btn {
+  font-size: 10px; float: right; padding: 2px 7px;
+}
+.github-mate-panel b {
+  line-height: 30px
+}
+.github-mate-panel ul.favorites {
+  margin-bottom: 2em;
+}
+.github-mate-panel li {
+  margin: .4em 0 0 1em;
+}
+.github-mate-panel li span.edit {
+  display: none;
+  position: absolute;
+  right:5px;
+  cursor: pointer;
+}
+.github-mate-panel li:hover span {
+  display: inline;
+}
+/* github mate panel end */
