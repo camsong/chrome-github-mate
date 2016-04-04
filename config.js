@@ -3,6 +3,7 @@ var DEFAULT_CONFIG = {
   'feature-2-enable': false,
   'feature-2-interval': '5',
   'feature-2-type': 'unread',
+  'feature-4-enable': true,
 };
 
 function mergeObject(destination, source) {

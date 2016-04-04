@@ -5,6 +5,7 @@ function renderOptions() {
   document.querySelector('#feature-2-interval').value = config['feature-2-interval'];
   document.querySelector('#feature-2-type').value = config['feature-2-type'];
   document.querySelector('#feature-3-tab-size').value = config['feature-3-tab-size'] || '4'; // set to 4 by default
+  document.querySelector('#feature-4-enable').checked = config['feature-4-enable'];
   renderOptionsStates();
 }
 
@@ -20,6 +21,7 @@ function storeConfig() {
     'feature-2-interval': document.querySelector('#feature-2-interval').value,
     'feature-2-type': document.querySelector('#feature-2-type').value,
     'feature-3-tab-size': document.querySelector('#feature-3-tab-size').value,
+    'feature-4-enable': document.querySelector('#feature-4-enable').checked,
   });
 }
 
