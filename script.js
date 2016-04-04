@@ -8,20 +8,19 @@ var s = document.createElement('script');
 // page.js injection end
 
 
-
 var FileDownloader = {
   init: function() {
     FileDownloader.addDownloadTooltip();
     FileDownloader.bindPopState();
 
-    document.addEventListener('click', function(event) {
-      chrome.runtime.sendMessage({key: "feature-1-enable"}, function(response) {
-        if(typeof(response.result) === 'undefined' || response.result === true) {
-          FileDownloader.eventHandler.call(FileDownloader, event);
-        } else {
-          console.log('GitHub Mate click to download file is disabled, you can re-enable it in options page.');
-        }
-      });
+    chrome.runtime.sendMessage({key: "feature-1-enable"}, function(response) {
+      if(typeof(response.result) === 'undefined' || response.result === true) {
+        $(document).on('click', '.octicon-file-text', function(e) {
+          FileDownloader.eventHandler(e);
+        });
+      } else {
+        console.log('GitHub Mate click to download file is disabled, you can re-enable it in options page.');
+      }
     });
   },
 
@@ -51,8 +50,8 @@ var FileDownloader = {
   },
 
   eventHandler: function(event) {
-    if (this.isFromListPage(event.target)) {
-      var linkNode = event.target.parentNode.nextElementSibling.querySelector('a');
+    if (this.isFromListPage(event.currentTarget)) {
+      var linkNode = event.currentTarget.parentNode.nextElementSibling.querySelector('a');
       var href = linkNode.href.replace('\/blob\/', '\/raw\/');
       this.downloadIt(href, linkNode.textContent);
     }

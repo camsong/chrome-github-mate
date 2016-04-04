@@ -50,7 +50,6 @@
 @media(max-width: 1400px) {
   .github-mate-panel {
     right:-185px;
-    right:0;
   }
   .github-mate-panel:hover {
     right:0;
