@@ -34,6 +34,10 @@ Amazing native-like 'Download' button in file detail page!
 
 #### 5. Adjust Tab Space smartly, make it display tab characters as 4 spaces wide instead of the default 8.
 
+#### 6. Sticky side-panel for favorites & markdown-outline(thanks to @zbycz)
+
+![show notifications](https://cloud.githubusercontent.com/assets/948896/14252559/860a154a-faba-11e5-8721-1b69070b3cdb.png)
+
 ### TODO
 
 * Download folder on one click
