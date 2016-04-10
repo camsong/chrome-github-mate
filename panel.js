@@ -84,7 +84,7 @@ function updateOutlinesInPanel() {
   var $container = document.createElement('div')
   $container.classList.add('github-mate-outline')
 
-  Array.from(document.querySelectorAll('.markdown-body')).forEach($md => {
+  Array.from(document.querySelectorAll('.markdown-body:not(.comment-body):not(.message)')).forEach($md => {
     var $headers = Array.from($md.querySelectorAll(headerSel))
 
 
