@@ -4,14 +4,20 @@
  */
 
 function gm_get_favorites() {
-  return JSON.parse(localStorage.getItem('github-mate-panel-favorites')) || [{loc: 'https://github.com/rubyerme/chrome-github-mate', text: 'Default by OctoMate', title:'default entry'}];
+  return JSON.parse(localStorage.getItem('github-mate-panel-favorites')) || [{
+    loc: 'https://github.com/rubyerme/chrome-github-mate',
+    text: 'Default by OctoMate',
+    title: 'default entry'
+  }];
 }
+
 function gm_set_favorites(items) {
   localStorage.setItem('github-mate-panel-favorites', JSON.stringify(items));
 }
 
 // use lastString to avoid rerendering
 var lastString = '';
+
 function gm_refresh_favorites() {
   var ul = '';
   var items = gm_get_favorites();
@@ -28,6 +34,7 @@ function gm_refresh_favorites() {
 
 // put panelNode in global
 var panelNode = $('div.github-mate-panel');
+
 function initPanelNode() {
   if (panelNode.length === 0) {
     panelNode = $('<div class="github-mate-panel"></div>').html(
@@ -92,17 +99,16 @@ function updateOutlinesInPanel() {
     $headers.forEach($h => {
       var level = getHeaderLevel($h)
       if (!level) return
-      var $ul = $outline, $li, $child
+      var $ul = $outline,
+        $li, $child
       for (var l = 1; l < level; l++) {
-          $li = $ul.lastChild || $ul.appendChild(document.createElement('li'))
-          $child = $li.lastChild || {}
-          $ul = $child.tagName === 'UL'
-              ? $child
-              : $li.appendChild(document.createElement('ul'))
+        $li = $ul.lastChild || $ul.appendChild(document.createElement('li'))
+        $child = $li.lastChild || {}
+        $ul = $child.tagName === 'UL' ? $child : $li.appendChild(document.createElement('ul'))
       }
       var $topic = $ul
-          .appendChild(document.createElement('li'))
-          .appendChild(document.createElement('a'))
+        .appendChild(document.createElement('li'))
+        .appendChild(document.createElement('a'))
       $topic.innerText = $h.innerText
       $topic.href = `#${$h.querySelector(anchorSel).id.replace(/^user-content-/, '')}`
     })
@@ -130,29 +136,52 @@ function updateOutlinesInPanel() {
 // from https://github.com/dbkaplun/github-markdown-outline-extension/blob/master/index.js
 // very hackily edited by zbycz to add it in panel
 getHeaderLevel.REGEXP = /h(\d)/i
-function getHeaderLevel ($h) {
+
+function getHeaderLevel($h) {
   var level = Number(((($h || {}).tagName || '').match(getHeaderLevel.REGEXP) || [])[1])
   return isNaN(level) ? undefined : level
 }
 
 var headerSels = []
-for (var l = 1; l <= 6; l++) headerSels.push('h'+l)
+for (var l = 1; l <= 6; l++) headerSels.push('h' + l)
 var headerSel = headerSels.join(', ')
 var anchorSel = 'a[id]'
 
+function insertPanelCSS(panel) {
+  if (panel) {
+    var css = ".container {" +
+      "width: calc(100% - 240px) !important;" + /* 100% - right margin - left margin */
+      "margin-right: 200px !important;" + /* panel width */
+      "margin-left: 20px !important;}" /* left margin */
+  } else {
+    var css = ".container {" +
+      "width: calc(100% - 40px) !important;" + /* 100% - right margin - left margin */
+      "margin-right: 20px !important;" + /* right margin */
+      "margin-left: 20px !important;}" /* left margin */
+  }
+
+  var node = document.createElement('style');
+  node.innerHTML = css;
+  document.body.appendChild(node);
+}
+
 
 var Panel = {
-  init: function() {
-    chrome.runtime.sendMessage({key: "feature-4-enable"}, function(response) {
-      if(typeof(response.result) === 'undefined' || response.result === true) {
+  init: function () {
+    chrome.runtime.sendMessage({
+      key: "feature-4-enable"
+    }, function (response) {
+      if (typeof (response.result) === 'undefined' || response.result === true) {
         Panel.constructor();
+        insertPanelCSS(true)
       } else {
         console.log('GitHub Mate Panel is disabled, you can enable it in options page.');
+        insertPanelCSS(false)
       }
     });
   },
 
-  constructor: function() {
+  constructor: function () {
     // update after changed page with pjax
     $(document).on('pjax:end', function () {
       updateOutlinesInPanel();
