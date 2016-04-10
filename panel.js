@@ -115,15 +115,19 @@ function updateOutlinesInPanel() {
 
     // find all sublists with one item and replace with contents
     Array.from($container.querySelectorAll('ul')).forEach($ul => {
-      var $parent = $ul.parentNode
-      var $li = $ul.firstChild
-      var $child = $li.firstChild
-      if ($li !== $ul.lastChild || $child.tagName !== 'UL') return
-      while ($child) {
-        $parent.insertBefore($child, $ul.nextSibling) // inserts to end of list if $ul.nextSibling is null
-        $child = $child.nextSibling
+      try {
+        var $parent = $ul.parentNode
+        var $li = $ul.firstChild
+        var $child = $li.firstChild
+        if ($li !== $ul.lastChild || $child.tagName !== 'UL') return
+        while ($child) {
+          $parent.insertBefore($child, $ul.nextSibling) // inserts to end of list if $ul.nextSibling is null
+          $child = $child.nextSibling
+        }
+        $parent.removeChild($ul)
+      } catch (e) {
+        console.log("Error setting up GitHub Mate panel:", e)
       }
-      $parent.removeChild($ul)
     })
   })
 
