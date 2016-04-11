@@ -151,25 +151,6 @@ for (var l = 1; l <= 6; l++) headerSels.push('h' + l)
 var headerSel = headerSels.join(', ')
 var anchorSel = 'a[id]'
 
-function insertPanelCSS(panel) {
-  if (panel) {
-    var css = ".container {" +
-      "width: calc(100% - 240px) !important;" + /* 100% - right margin - left margin */
-      "margin-right: 200px !important;" + /* panel width */
-      "margin-left: 20px !important;}" /* left margin */
-  } else {
-    var css = ".container {" +
-      "width: calc(100% - 40px) !important;" + /* 100% - right margin - left margin */
-      "margin-right: 20px !important;" + /* right margin */
-      "margin-left: 20px !important;}" /* left margin */
-  }
-
-  var node = document.createElement('style');
-  node.innerHTML = css;
-  document.body.appendChild(node);
-}
-
-
 var Panel = {
   init: function () {
     chrome.runtime.sendMessage({
@@ -177,10 +158,8 @@ var Panel = {
     }, function (response) {
       if (typeof (response.result) === 'undefined' || response.result === true) {
         Panel.constructor();
-        insertPanelCSS(true)
       } else {
         console.log('GitHub Mate Panel is disabled, you can enable it in options page.');
-        insertPanelCSS(false)
       }
     });
   },
