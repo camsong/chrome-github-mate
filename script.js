@@ -34,7 +34,10 @@ var FileDownloader = {
     var rawUrlNode = document.querySelector('#raw-url');
     if (rawUrlNode && !document.querySelector('#download-btn')) {
       var fileName = document.querySelector('.breadcrumb .final-path').textContent;
-      rawUrlNode.parentNode.innerHTML = "<a download='"+fileName+"' href='" + rawUrlNode.href + "' class='btn btn-sm' id='download-btn'>Download</a>" + rawUrlNode.parentNode.innerHTML;
+      rawUrlNode.parentNode.innerHTML = "<a download='"+fileName+"' href='" + rawUrlNode.href + "' class='btn btn-sm' id='download-btn'>Download</a>"
+          + "<a href='" + rawUrlNode.href.replace(/github.com(\/.+?\/.+?)\/raw/, 'rawgit.com$1') + "' class='btn btn-sm'>Rawgit</a>"
+          + rawUrlNode.parentNode.innerHTML;
+
     }
   },
 
