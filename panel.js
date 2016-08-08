@@ -158,8 +158,6 @@ var Panel = {
     }, function (response) {
       if (typeof (response.result) === 'undefined' || response.result === true) {
         Panel.constructor();
-      } else {
-        console.log('GitHub Mate Panel is disabled, you can enable it in options page.');
       }
     });
   },
