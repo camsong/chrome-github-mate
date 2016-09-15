@@ -32,12 +32,12 @@ var FileDownloader = {
     });
     // if in file detail page
     var rawUrlNode = document.querySelector('#raw-url');
-    if (rawUrlNode && !document.querySelector('#download-btn')) {
+    if (rawUrlNode && !document.querySelector('.download-btn')) {
       var fileName = document.querySelector('.breadcrumb .final-path').textContent;
       let btn = document.createElement('a');
-      btn.setAttribute('class', 'btn btn-sm btn-primary tooltipped tooltipped-nw');
-      btn.setAttribute('id', 'download-btn');
+      btn.setAttribute('class', 'btn btn-sm btn-primary tooltipped tooltipped-n download-btn');
       btn.setAttribute('href', rawUrlNode.href);
+      btn.setAttribute('download', fileName);
       btn.setAttribute('aria-label', 'Click to download ' + fileName);
       btn.textContent = 'Download';
       rawUrlNode.parentNode.parentNode.prepend(btn);
