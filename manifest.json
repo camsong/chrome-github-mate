@@ -2,7 +2,7 @@
   "name": "Octo Mate",
   "description": "Missing mate of GitHub, making single file download effortless and with more features",
   "default_locale": "en",
-  "version": "0.15.2",
+  "version": "0.16.0",
   "background": {
     "persistent": false,
     "page": "background.html"
@@ -18,7 +18,7 @@
       "matches": ["https://github.com/*"],
       "run_at": "document_end",
       "css": ["style.css"],
-      "js": ["jquery-2.1.3.min.js", "page.js", "config.js", "script.js", "show-size.js", "tab-size.js", "panel.js"]
+      "js": ["jquery-2.1.3.min.js", "page.js", "config.js", "script.js", "show-size.js", "tab-size.js", "panel.js", "ignore-spaces.js"]
     }
   ],
   "browser_action": {

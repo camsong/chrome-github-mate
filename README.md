@@ -38,6 +38,12 @@ Amazing native-like 'Download' button in file detail page!
 
 ![show notifications](https://cloud.githubusercontent.com/assets/948896/14252559/860a154a-faba-11e5-8721-1b69070b3cdb.png)
 
+#### 7. Ignore whitespace feature
+
+Add 'Ignore Spaces' and 'Show Spaces' button to let you ignore whitespace in code review. The trick behind this is adding `?w=1` to any diff URL will remove any changes only in whitespace, enabling you to see only that code that has changed.
+
+![Ignore whitespace](https://camo.githubusercontent.com/797184940defadec00393e6559b835358a863eeb/68747470733a2f2f6769746875622d696d616765732e73332e616d617a6f6e6177732e636f6d2f626c6f672f323031312f736563726574732f776869746573706163652e706e67)
+
 ### TODO
 
 * Download folder on one click
