@@ -1,6 +1,10 @@
 var ShowSize = {
   username: '',
   reponame: '',
+  // make sure it's the repo index page
+  isAvailable: function() {
+    return document.querySelector('.overall-summary.overall-summary-bottomless');
+  },
   init: function() {
     if (this.isAvailable()) {
       var repoInfo = window.location.href.match(/https:\/\/github.com\/([^\/]+)\/([^\/]+)/);
@@ -40,11 +44,6 @@ var ShowSize = {
       ShowSize.showGHPages();
     }
   },
-  // make sure it's the repo index page
-  isAvailable: function() {
-    return document.querySelector('.entry-title.public') &&
-           document.querySelector('.overall-summary.overall-summary-bottomless')
-  },
   showGHPages: function() {
     // fix a bug: if the repo name match `username.github.io`  or `username.github.com`, then the github pages url should be `username.github.io`
     var pageUrl = "http://" + this.username + ".github.io/" + this.reponame;
@@ -55,7 +54,7 @@ var ShowSize = {
     if (document.querySelector('.file-navigation.in-mid-page')) {
       // if there is no gh-pages button, add one
       if (!document.querySelector('.js-show-gh-pages')) {
-        document.querySelector('.file-navigation.in-mid-page').innerHTML += "<a href='" + pageUrl + "' data-name='gh-pages' data-skip-pjax='true' rel='nofollow' class='js-show-gh-pages btn btn-sm empty-icon tooltipped tooltipped-s right' aria-label='Goto github pages'>GH Pages</a>";
+        document.querySelector('.file-navigation.in-mid-page').innerHTML += "<a href='" + pageUrl + "' data-name='gh-pages' data-skip-pjax='true' rel='nofollow' class='js-show-gh-pages btn btn-sm empty-icon tooltipped tooltipped-s right btn-primary' aria-label='Goto github pages'>GH Pages</a>";
       }
     }
   },
