@@ -90,7 +90,7 @@ GitHubNotification = {
     // check notification again if it's enabled and the date range since last checked is longer
     // than interval.
     if (GitHubNotification.isEnabled() && (
-         typeof(localStorage.last_checked_date) === 'undefined' ||
+         localStorage.last_checked_date == null ||
          (Date.now() - localStorage.last_checked_date) >= GitHubNotification.getInterval()
       )) {
       this.checkNotifications();
