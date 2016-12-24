@@ -15,14 +15,14 @@ function renderOptionsStates() {
 }
 
 function storeConfig() {
-  localStorage.gm_config = JSON.stringify({
+  localStorage.setItem('gm_config', JSON.stringify({
     'feature-1-enable': document.querySelector('#feature-1-enable').checked,
     'feature-2-enable': document.querySelector('#feature-2-enable').checked,
     'feature-2-interval': document.querySelector('#feature-2-interval').value,
     'feature-2-type': document.querySelector('#feature-2-type').value,
     'feature-3-tab-size': document.querySelector('#feature-3-tab-size').value,
     'feature-4-enable': document.querySelector('#feature-4-enable').checked,
-  });
+  }));
 }
 
 window.onload = function() {

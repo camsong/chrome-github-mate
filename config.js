@@ -17,7 +17,7 @@ function mergeObject(destination, source) {
 function getConfig() {
   var config;
   try {
-    config = mergeObject(DEFAULT_CONFIG, JSON.parse(localStorage.gm_config || '{}'));
+    config = mergeObject(DEFAULT_CONFIG, JSON.parse(localStorage.getItem('gm_config') || '{}'));
   } catch (e) {
     console.error(e);
     config = DEFAULT_CONFIG;

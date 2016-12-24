@@ -16,7 +16,15 @@ var IgnoreSpace = {
 
   // Check if it's code review diff page. like https://github.com/angular/angular.js/pull/10539/files?w=1
   isValid() {
+    return this.isPRPage() || this.isCommitPage();
+  },
+
+  isPRPage() {
     return document.querySelector('.diffbar') && document.querySelector('.pr-review-tools');
+  },
+
+  isCommitPage() {
+    return document.querySelector('.details-collapse.table-of-contents.js-details-container .BtnGroup');
   },
 
   isCurrentIgnore() {
@@ -46,7 +54,11 @@ var IgnoreSpace = {
   },
 
   addBtn(btn) {
-    document.querySelector('.pr-review-tools').prepend(btn);
+    if (this.isPRPage()) {
+      document.querySelector('.pr-review-tools').prepend(btn);
+    } else {
+      document.querySelector('.details-collapse.table-of-contents.js-details-container .BtnGroup').prepend(btn);
+    }
   }
 }
 
