@@ -32,31 +32,50 @@
 }
 /* tab size end */
 
-
 /* github mate panel start, including outline style and favorites style */
 .github-mate-panel {
   position: fixed;
   top:0;
   right: 0;
-  z-index: 35;
-  background:rgba(255,255,255,0.9);
-  border-left: 3px #d26911 solid;
-  border-radius: 3px;
+  bottom: 0;
+  z-index: 1000001;
   width: 200px;
+  background-color: rgba(247, 247, 247, 0.8);
+  transform: translate3d(0, 0px, 0px);
   padding: 10px 5px 15px 15px;
-  max-height:100%;
+  border-left: 1px solid rgb(221, 221, 221);
+  transition: transform 0.2s ease;
   overflow-y:auto
 }
-@media(max-width: 1400px) {
-  .github-mate-panel {
-    right:-185px;
-  }
-  .github-mate-panel:hover {
-    right:0;
-  }
-}
-.github-mate-panel a.add.btn {
+
+.github-mate-panel a.btn.add {
   font-size: 10px; float: right; padding: 2px 7px;
+}
+
+.github-mate-panel a.btn.toggle {
+  font-size: 10px; padding: 2px 7px;
+  margin-left: -10px;
+  margin-right: 4px;
+  color: #999;
+}
+.github-mate-panel a.btn.toggle::after {
+  content: '▶️';
+}
+.github-mate-panel a.btn.toggle:hover {
+  color: rgb(65, 131, 196);
+}
+.github-mate-panel a.btn.toggle:focus {
+}
+.github-mate-panel.collapse a.btn.toggle::after {
+  content: '◀️';
+}
+.github-mate-panel.collapse {
+  overflow: visible;
+  transform: translate3d(100%, 0px, 0px);
+}
+.github-mate-panel.collapse a.btn.toggle {
+  position: absolute;
+  margin-left: -50px;
 }
 .github-mate-panel b {
   line-height: 30px

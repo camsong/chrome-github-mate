@@ -37,8 +37,11 @@ var panelNode = $('div.github-mate-panel');
 
 function initPanelNode() {
   if (panelNode.length === 0) {
-    panelNode = $('<div class="github-mate-panel"></div>').html(
-      "<a href='#' class='add btn'>Add this page</a>" +
+    let isCollapse = localStorage.getItem('github-mate-panel-collapse') === 'true';
+
+    panelNode = $('<div class="github-mate-panel' + (isCollapse ? ' collapse' : '') + '"></div>').html(
+      "<a href='javascript:;' class='add btn'>➕</a>" +
+      "<a href='javascript:;' class='toggle btn collapse'></a>" +
       "<b>Favorites</b>" +
       "<ul class='github-mate-favorites'></ul>" +
       "<div class='github-mate-outline'></div>"
@@ -48,9 +51,15 @@ function initPanelNode() {
     setInterval(gm_refresh_favorites, 5000);
     gm_refresh_favorites();
 
+    panelNode.on('click', 'a.toggle', function (e) {
+      $('.github-mate-panel').toggleClass('collapse');
+      localStorage.setItem('github-mate-panel-collapse', $('.github-mate-panel').hasClass('collapse'));
+      $(e.target).blur();
+    });
+
     panelNode.on('click', 'a.add', function (e) {
       var path = location.pathname.split('/'); // /winsite/iprace_fe/issues/779
-      var text = prompt('Edit title:', path[2] + ' ' + document.title);
+      var text = prompt('Add this page, edit title:', path[2] + ' ' + document.title);
 
       if (!text) return;
 
