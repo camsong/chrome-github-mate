@@ -14,21 +14,21 @@
         <table>
           <thead>
             <tr>
-              <th colspan='2'>Features list</th>
+              <th colspan='2'>Features list <small>(Auto Save)</small></th>
             </tr>
           </thead>
           <tbody>
-            <tr id='feature-1'>
+            <tr>
               <th>Click to download file</th>
               <td><label>Enable <input type='checkbox' id='feature-1-enable'></label></td>
             </tr>
-            <tr id='feature-2'>
-              <th rowspan='2'>Show notifications number</th>
+            <tr>
+              <th rowspan='3'>Show notifications number</th>
               <td>
                 <label>Enable <input type='checkbox' id='feature-2-enable'>
               </td>
             </tr>
-            <tr id="feature-2-options">
+            <tr>
               <td>
                 <label> Update every
                   <select id='feature-2-interval'>
@@ -41,6 +41,30 @@
                   </select>
                 </label>
               </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Show
+                  <select id='feature-2-type'>
+                    <option value='' disabled selected>Please Choose</option>
+                    <option value='unread'>Unread</option>
+                    <option value='participating'>participating</option>
+                  </select>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <th>Tab Size</th>
+              <td>
+                <select id='feature-3-tab-size'>
+                  <option value='2'>2</option>
+                  <option value='4'>4</option>
+                  <option value='8'>8</option>
+                </select>
+            </tr>
+            <tr>
+              <th>Side-panel with favorites & markdown-outline</th>
+              <td><label>Enable <input type='checkbox' id='feature-4-enable'></label></td>
             </tr>
           </tbody>
         </table>
