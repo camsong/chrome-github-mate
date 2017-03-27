@@ -33,13 +33,13 @@ var IgnoreSpace = {
 
   renderShowSpacesBtn() {
     // remove w=1 in url
-    let url = location.href.replace('w=1&', '').replace('&w=1', '').replace('?w=1', '');
+    let url = location.pathname + location.search.replace('w=1&', '').replace('&w=1', '').replace('?w=1', '') + location.hash;
     this.addBtn(this.newBtn(url, 'Show Spaces', 'Click to show spaces in the Diff'));
   },
 
   renderIgnoreSpacesBtn() {
-    // add w=1 in url
-    let url = location.href + (location.href.indexOf('?') > -1 ? '&w=1' : '?w=1');
+    // add w=1 in url in search, not in hash
+    let url = location.pathname + location.search + (location.search.indexOf('?') > -1 ? '&w=1' : '?w=1') + location.hash;
     this.addBtn(this.newBtn(url, 'Ignore Spaces', 'Click to hide spaces in the Diff'));
   },
 
