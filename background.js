@@ -33,8 +33,15 @@ function _goToNotificationTab() {
   });
 }
 
+// type can be unread/participating
 function _extractUnreadNotifications(response) {
-  return parseInt(response.match(/<span class="count">([^<]+)</)[1]);
+  var type = getConfig()['feature-2-type'];
+
+  if (type === 'participating') {
+    return parseInt(response.match(/<span class="count">(\d+)</g)[1].match(/\d+/g)[0]);
+  }
+  // unread and others
+  return parseInt(response.match(/<span class="count">(\d+)</g)[0].match(/\d+/g)[0]);
 }
 
 function _loginWarning() {
@@ -44,7 +51,7 @@ function _loginWarning() {
 }
 
 function _getBadgeText(num) {
-  return num != 0 ? num+'' : ''
+  return num + '';// num != 0 ? num+'' : ''
 }
 
 function _getTitle(num) {
@@ -52,12 +59,14 @@ function _getTitle(num) {
          (num == 1 ? 'notification' : 'notifications');
 }
 
-function _displayUnreadCount(response) {
-  var unreadCount = _extractUnreadNotifications(response);
-  console.log('Get ' + unreadCount + ' unread notifications');
-
-  chrome.browserAction.setBadgeBackgroundColor({color: blue});
-  chrome.browserAction.setBadgeText({text: _getBadgeText(unreadCount)});
+function _displayUnreadCount(unreadCount) {
+  if (unreadCount > 0) {
+    chrome.browserAction.setBadgeBackgroundColor({color: blue});
+    chrome.browserAction.setBadgeText({text: _getBadgeText(unreadCount)});
+  } else {
+    chrome.browserAction.setBadgeBackgroundColor({color: '#999'});
+    chrome.browserAction.setBadgeText({text: ' '});
+  }
 
   chrome.browserAction.setTitle({title: _getTitle(unreadCount)});
 }
@@ -82,37 +91,51 @@ GitHubNotification = {
   checkNotificationsLoop: function(){
     // check notification again if it's enabled and the date range since last checked is longer
     // than interval.
-    if (GitHubNotification.isEnabled() && (
-         typeof(localStorage.last_checked_date) === 'undefined' ||
-         (Date.now() - localStorage.last_checked_date) >= GitHubNotification.getInterval()
-      )) {
-      this.checkNotifications();
-      localStorage.last_checked_date = Date.now();
+    if (GitHubNotification.isEnabled()) {
+      if (!localStorage.getItem('last_checked_date') ||
+        (Date.now() - localStorage.getItem('last_checked_date')) >= GitHubNotification.getInterval()
+      ) {
+        this.checkNotifications(true);
+        localStorage.setItem('last_checked_date', Date.now());
+      } else {
+        this.checkNotifications(false);
+      }
     }
 
     // loop;
-    window.setTimeout(GitHubNotification.checkNotificationsLoop.bind(GitHubNotification), 60000);
+    window.setTimeout(GitHubNotification.checkNotificationsLoop.bind(GitHubNotification), 10000);
   },
 
-  checkNotifications: function() {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4) {
-        var response = xhr.response;
+  checkNotifications: function(makeRequest) {
+    if (makeRequest) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+          var response = xhr.response;
 
-        if (response.match(/<body class="logged_out/)) {
-          // not logged in
-          console.log('not logged in currently');
-          _loginWarning();
-        } else {
-          // logged in
-          _displayUnreadCount(response);
+          if (response.match(/<body class="logged_out/)) {
+            // not logged in
+            console.log('not logged in currently');
+            _loginWarning();
+          } else {
+            // logged in
+            var unreadCount = _extractUnreadNotifications(response);
+            console.log('Get ' + unreadCount + ' unread notifications');
+
+            var type = getConfig()['feature-2-type'];
+            localStorage.setItem('unreadNotifications' + type, unreadCount);
+            _displayUnreadCount(unreadCount);
+          }
         }
-      }
-    };
-    xhr.open("GET", notificationUrl, true);
-    console.log('making request to get notifications...');
-    xhr.send(null);
+      };
+      xhr.open("GET", notificationUrl, true);
+      console.log('making request to get notifications...');
+      xhr.send(null);
+    } else {
+      var type = getConfig()['feature-2-type'];
+      var unreadCount = localStorage.getItem('unreadNotifications' + type);
+      _displayUnreadCount(unreadCount);
+    }
   }
 };
 
