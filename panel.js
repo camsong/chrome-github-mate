@@ -12,7 +12,11 @@ function gm_get_favorites() {
 }
 
 function gm_set_favorites(items) {
-  localStorage.setItem('github-mate-panel-favorites', JSON.stringify(items));
+  try {
+    localStorage.setItem('github-mate-panel-favorites', JSON.stringify(items));
+  } catch (e) {
+    alert("Local storage is full, can't add more favorite");
+  }
 }
 
 // use lastString to avoid rerendering
