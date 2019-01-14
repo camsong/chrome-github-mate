@@ -15,7 +15,9 @@ function gm_set_favorites(items) {
   try {
     localStorage.setItem('github-mate-panel-favorites', JSON.stringify(items));
   } catch (e) {
-    alert("Local storage is full, can't add more favorite");
+    if (e.code === DOMException.QUOTA_EXCEEDED_ERR) {
+      alert("Local storage is full, can't add more favorite");
+    }
   }
 }
 
