@@ -9,8 +9,12 @@
   },
   "permissions" : [
     "*://github.com/*",
+    "*://raw.githubusercontent.com/*",
     "tabs",
-    "webNavigation"
+    "webNavigation",
+    "activeTab",
+    "pageCapture",
+    "downloads"
   ],
   "web_accessible_resources": ["page.js"],
   "content_scripts": [
