@@ -7,6 +7,30 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   sendResponse({result: getConfig()[request.key]});
 });
 
+
+chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
+  if (changeInfo.status == 'complete') {
+    if(tab.url.includes('https://raw.githubusercontent.com/')){
+      console.log('Found raw content tab')
+      savePage(tab,tab.id);
+    }
+  }
+})
+function savePage(tab,id) {
+    let fileName = tab.url.split('/').slice(-1).pop(0);
+    console.log(`Found Path ${tab.url}`)
+    console.log(`Found file name ${fileName}`)
+    console.log(`Closing tab & sending download`)
+    chrome.tabs.remove(id);
+    if(fileName.charAt(0) === '.') fileName = fileName.slice(1) + '.txt';
+    chrome.downloads.download({
+        url: tab.url,
+        filename: fileName
+    });
+}
+
+
+
 var GitHubNotification;
 var notificationUrl = 'https://github.com/notifications';
 var blue = [1, 128, 255, 255];
@@ -36,7 +60,6 @@ function _goToNotificationTab() {
 // type can be unread/participating
 function _extractUnreadNotifications(response) {
   var type = getConfig()['feature-2-type'];
-
   if (type === 'participating') {
     return parseInt(response.match(/<span class="count">(\d+)</g)[1].match(/\d+/g)[0]);
   }
@@ -142,3 +165,4 @@ GitHubNotification = {
 GitHubNotification.init();
 
 })();
+
