@@ -11,16 +11,16 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
   if (changeInfo.status == 'complete') {
     if(tab.url.includes('https://raw.githubusercontent.com/')){
-      console.log('Found raw content tab')
+      console.log('Found raw content tab');
       savePage(tab,tab.id);
     }
   }
 })
 function savePage(tab,id) {
     let fileName = tab.url.split('/').slice(-1).pop(0);
-    console.log(`Found Path ${tab.url}`)
-    console.log(`Found file name ${fileName}`)
-    console.log(`Closing tab & sending download`)
+    console.log(`Found Path ${tab.url}`);
+    console.log(`Found file name ${fileName}`);
+    console.log(`Closing tab & sending download`);
     chrome.tabs.remove(id);
     if(fileName.charAt(0) === '.') fileName = fileName.slice(1) + '.txt';
     chrome.downloads.download({
