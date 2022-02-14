@@ -11,8 +11,8 @@
     "*://github.com/*",
     "*://raw.githubusercontent.com/*",
     "tabs",
-    "activeTab",
     "webNavigation",
+    "activeTab",
     "pageCapture",
     "downloads"
   ],
