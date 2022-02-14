@@ -7,15 +7,14 @@ var s = document.createElement('script');
 (document.head||document.documentElement).appendChild(s);
 // page.js injection end
 
-
 var FileDownloader = {
   init: function() {
     FileDownloader.addDownloadTooltip();
     FileDownloader.bindPopState();
-
     chrome.runtime.sendMessage({key: "feature-1-enable"}, function(response) {
       if(typeof(response.result) === 'undefined' || response.result === true) {
-        $(document).on('click', '.octicon-file-text', function(e) {
+        // Changed .octicon-file-text to .download-btn
+        $(document).on('click', '.download-btn', function(e) {
           FileDownloader.eventHandler(e);
         });
       } else {
@@ -25,7 +24,7 @@ var FileDownloader = {
   },
 
   addDownloadTooltip: function() {
-    Array.prototype.slice.call(document.querySelectorAll('.octicon-file-text')).map(function(icon) {
+    Array.prototype.slice.call(document.querySelectorAll('.octicon-file')).map(function(icon) {
       var td = icon.parentNode;
       td.classList.add('tooltipped', 'tooltipped-se');
       td.setAttribute('aria-label', 'Click to download');
@@ -36,8 +35,10 @@ var FileDownloader = {
       var fileName = document.querySelector('.breadcrumb .final-path').textContent;
       let btn = document.createElement('a');
       btn.setAttribute('class', 'btn btn-sm btn-primary tooltipped tooltipped-n download-btn');
-      btn.setAttribute('href', rawUrlNode.href);
-      btn.setAttribute('download', fileName);
+      btn.setAttribute('target','_blank');
+      btn.setAttribute('rel','noreferrer');
+      // btn.setAttribute('href', rawUrlNode.href);
+      btn.setAttribute('download',fileName);
       btn.setAttribute('aria-label', 'Click to download ' + fileName);
       btn.textContent = 'Download';
       rawUrlNode.parentNode.parentNode.prepend(btn);
@@ -57,26 +58,34 @@ var FileDownloader = {
 
   eventHandler: function(event) {
     if (this.isFromListPage(event.currentTarget)) {
-      var linkNode = event.currentTarget.parentNode.nextElementSibling.querySelector('a');
-      var href = linkNode.href.replace('\/blob\/', '\/raw\/');
-      this.downloadIt(href, linkNode.textContent);
+      var linkNode = event.currentTarget.parentNode.nextElementSibling.querySelectorAll('a:not(.tooltipped)')[0];
+      // var href = linkNode.href.replace('\/blob\/', '\/raw\/');
+      let href = linkNode.href.replace('/raw/','/');
+      href = href.replace('https://github.com/','https://raw.githubusercontent.com/');
+      // Change linkNode.textContent to event.target.download
+      this.downloadIt(href, event.target.download); 
     }
   },
 
   downloadIt: function(href, fileName) {
     var downloadNode = document.createElement('a');
     downloadNode.setAttribute('href', href);
+    downloadNode.setAttribute('rel','noopener noreferrer');
+    downloadNode.setAttribute('target','_blank');
     downloadNode.setAttribute('download', fileName);
     downloadNode.click();
     downloadNode = null;
   },
 
   isFromListPage: function(node) {
-    return node.classList.contains('octicon-file-text') &&
-      document.querySelector('.files') &&
-      document.querySelector('.files').contains(node) &&
-      document.querySelector('.file') === null;
+    return node.classList.contains('download-btn') //&& // octicon-file // octicon-file-text
+      // document.querySelector('.files') &&
+      // document.querySelector('.files').contains(node) &&
+      // document.querySelector('.file') === null;
   },
 }
 
 FileDownloader.init();
+
+
+
